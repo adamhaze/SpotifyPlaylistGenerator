@@ -5,9 +5,19 @@ import TextField from "@mui/material/TextField";
 
 class CreateAccount extends React.Component 
 {
-  render() {
+  constructor(props) {
+    super(props)
+    this.state = {
+        name: ""
+    };
+  }
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+    console.log(this.state);
+  }
 
-  
+
+  render() {
   return (
     <Box
       component="form"
@@ -27,8 +37,9 @@ class CreateAccount extends React.Component
           required
           id="outlined-name"
           label="Name"
-          type="name"
-          // defaultValue="Hello World"
+          name="name"
+          value={this.state.name}
+          onChange={this.handleChange.bind(this)}
         />
         <TextField
           required
