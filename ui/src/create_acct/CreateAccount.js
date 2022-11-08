@@ -1,6 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import { Input } from "@mui/material";
 
 
 class CreateAccount extends React.Component 
@@ -8,7 +9,10 @@ class CreateAccount extends React.Component
   constructor(props) {
     super(props)
     this.state = {
-        name: ""
+        name: "",
+        username: "",
+        password: "",
+        email: ""
     };
   }
   handleChange(e) {
@@ -46,6 +50,9 @@ class CreateAccount extends React.Component
           id="outlined-username"
           label="Username"
           type="username"
+          name="username"
+          value={this.state.username}
+          onChange={this.handleChange.bind(this)}
           // defaultValue="Hello World"
         />
         <TextField
@@ -54,12 +61,18 @@ class CreateAccount extends React.Component
           label="Password"
           type="password"
           autoComplete="current-password"
+          name="password"
+          value={this.state.password}
+          onChange={this.handleChange.bind(this)}
         />
         <TextField
           required
           id="outlined-email-input"
           label="Email"
           type="email"
+          name="email"
+          value={this.state.email}
+          onChange={this.handleChange.bind(this)}
         />
       </div>
     </Box>
