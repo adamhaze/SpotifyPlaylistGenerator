@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Input } from "@mui/material";
 import {createUser} from "../RouteController";
+import Button from '@mui/material/Button';
 
 
 class CreateAccount extends React.Component 
@@ -21,6 +22,10 @@ class CreateAccount extends React.Component
     console.log(this.state);
   }
 
+  handleSubmit () {
+    createUser(this.state);
+  }
+
 
   render() {
   return (
@@ -33,8 +38,9 @@ class CreateAccount extends React.Component
       autoComplete="off"
       style={{
         display: "flex",
+        justifyContent: "center",
         alignItems: "center",
-        justifyContent: "center"
+        textAlign: "center"
       }}
     >
       <div>
@@ -75,6 +81,7 @@ class CreateAccount extends React.Component
           value={this.state.email}
           onChange={this.handleChange.bind(this)}
         />
+      <Button variant="contained" onClick={this.handleSubmit.bind(this)}>Create Account</Button>
       </div>
     </Box>
   );
