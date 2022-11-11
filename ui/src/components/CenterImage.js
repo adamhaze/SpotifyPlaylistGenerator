@@ -9,10 +9,12 @@ export default function CenterImage () {
             display="flex"
             justifyContent="center"
             sx={{
-                height: 300,
-                width: 300,
+                height: 400,
+                width: 400,
                 marginLeft: "auto",
-                marginRight: "auto"
+                marginRight: "auto",
+                marginTop: 10,
+                marginBottom: 5
             }}
 
             src="https://play-lh.googleusercontent.com/UrY7BAZ-XfXGpfkeWg0zCCeo-7ras4DCoRalC_WXXWTK9q5b0Iw7B0YQMsVxZaNB7DM"

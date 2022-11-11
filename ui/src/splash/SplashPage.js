@@ -19,7 +19,7 @@ class SplashPage extends React.Component {
                     Spotify Playlist Generator
                 </Typography>
                 <div className="btn-wrapper">
-                    <Button variant="contained">Login</Button>
+                    <Button variant="contained" href="/login">Login</Button>
                 </div>
 
                 <div className="btn-wrapper">

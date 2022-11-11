@@ -3,7 +3,8 @@ import React from "react";
 import './App.css';
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import CreateAccount from "./create_acct/CreateAccount";
-import SplashPage from "./splash/SplashPage"
+import SplashPage from "./splash/SplashPage";
+import Login from "./login/Login";
 
 const App = () =>
   <Router>
@@ -11,7 +12,8 @@ const App = () =>
     <Routes>
       <Route exact path="/" element={<SplashPage/>} />
       <Route exact path="/register" element={<CreateAccount/>} />
-      <Route element={<CreateAccount/>} />
+      <Route exact path="/login" element={<Login/>} />
+      {/* <Route element={<CreateAccount/>} /> */}
     </Routes>
   </div>
   </Router>;
