@@ -16,7 +16,11 @@ class Login extends React.Component {
 
     handleChange(e) {
         this.setState({ [e.target.name]: e.target.value });
-        console.log(this.state);
+        // console.log(this.state);
+    }
+
+    handleSubmit () {
+        console.log(this.state)
     }
 
     render() {
@@ -50,10 +54,11 @@ class Login extends React.Component {
                         required
                         label="Password"
                         name="password"
+                        type="password"
                         value={this.state.password}
                         onChange={this.handleChange.bind(this)}
                     />
-                    <Button variant="contained">Login</Button>
+                    <Button variant="contained" onClick={this.handleSubmit.bind(this)}>Login</Button>
                     </div>
                 </Box>
             </React.Fragment>
