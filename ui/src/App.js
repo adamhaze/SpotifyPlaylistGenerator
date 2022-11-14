@@ -1,7 +1,6 @@
-import logo from './logo.svg';
 import React from "react";
 import './App.css';
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import CreateAccount from "./create_acct/CreateAccount";
 import SplashPage from "./splash/SplashPage";
 import Login from "./login/Login";
