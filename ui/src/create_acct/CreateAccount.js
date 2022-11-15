@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import { Input } from "@mui/material";
 import {createUser} from "../RouteController";
 import Button from '@mui/material/Button';
+import BackgroundImage from "../components/BackgroundImage";
 
 
 class CreateAccount extends React.Component 
@@ -28,6 +29,8 @@ class CreateAccount extends React.Component
 
   render() {
   return (
+    <React.Fragment>
+      <BackgroundImage/>
     <Box
       component="form"
       sx={{
@@ -83,6 +86,7 @@ class CreateAccount extends React.Component
       <Button variant="contained" onClick={this.handleSubmit.bind(this)}>Create Account</Button>
       </div>
     </Box>
+    </React.Fragment>
   );
 }
 }
