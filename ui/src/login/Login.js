@@ -4,13 +4,15 @@ import TextField from "@mui/material/TextField";
 import Button from '@mui/material/Button';
 import BackgroundImage from "../components/BackgroundImage";
 import CenterImage from "../components/CenterImage";
+import { validateLogin } from "../RouteController";
 
 class Login extends React.Component {
     constructor(props){
         super(props)
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            error: false
         }
     }
 
@@ -19,8 +21,18 @@ class Login extends React.Component {
         // console.log(this.state);
     }
 
-    handleSubmit () {
-        console.log(this.state)
+    handleSubmit = () => {
+        const validate = async () => {
+            const response = await validateLogin(this.state);
+            if (!response) {
+                this.setState({error: true});
+                return null;
+            } else {
+                this.setState({error: false});
+                console.log('successful login')
+            }
+        }
+        validate();
     }
 
     render() {
@@ -49,12 +61,15 @@ class Login extends React.Component {
                         name="username"
                         value={this.state.username}
                         onChange={this.handleChange.bind(this)}
+                        error={this.state.error}
+                        helperText={this.state.error ? 'invalid login credentials' : ''}
                     />
                     <TextField
                         required
                         label="Password"
                         name="password"
                         type="password"
+                        error={this.state.error}
                         value={this.state.password}
                         onChange={this.handleChange.bind(this)}
                     />

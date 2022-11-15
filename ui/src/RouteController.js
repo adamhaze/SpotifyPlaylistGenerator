@@ -18,3 +18,13 @@ export function createUser(obj){
         });
 
 }
+
+
+export async function validateLogin(obj) {
+    console.log("in validateLogin...")
+    const response = axios.post('http://localhost:8080/login', {
+        'username': obj.username,
+        'password': obj.password
+    })
+    return (await response).data;
+}
