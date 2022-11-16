@@ -5,10 +5,12 @@ import Button from '@mui/material/Button';
 import BackgroundImage from "../components/BackgroundImage";
 import CenterImage from "../components/CenterImage";
 import { validateLogin } from "../RouteController";
+import { RoutingFunc } from "../services/RoutingFunc";
 
 class Login extends React.Component {
     constructor(props){
         super(props)
+        this.routeChange = this.routeChange.bind(this);
         this.state = {
             username: "",
             password: "",
@@ -21,6 +23,10 @@ class Login extends React.Component {
         // console.log(this.state);
     }
 
+    routeChange = () => {
+        this.props.navigate('/home');
+    }
+
     handleSubmit = () => {
         const validate = async () => {
             const response = await validateLogin(this.state);
@@ -29,7 +35,8 @@ class Login extends React.Component {
                 return null;
             } else {
                 this.setState({error: false});
-                console.log('successful login')
+                console.log('successful login');
+                this.routeChange();
             }
         }
         validate();
@@ -83,4 +90,4 @@ class Login extends React.Component {
 
 }
 
-export default Login;
+export default RoutingFunc(Login);
