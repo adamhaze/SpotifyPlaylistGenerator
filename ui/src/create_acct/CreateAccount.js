@@ -39,8 +39,9 @@ class CreateAccount extends React.Component
           username: "",
           password: "",
           email: "",
-          error: true});
-        return null;
+          error: true}, () => {console.log(this.state)});
+
+        // return null;
       } else {
           // route to home page
           this.setState({error: false});
@@ -111,7 +112,7 @@ class CreateAccount extends React.Component
         />
       <Button variant="contained" onClick={this.handleSubmit.bind(this)}>Create Account</Button>
 
-      {this.props.error ? <Alert severity="error">This is an error alert — check it out!</Alert> : <></>}
+      {this.state.error ? <Alert severity="error" variant="filled">There is already an account with this email address</Alert> : <></>}
       </div>
     </Box>
     </React.Fragment>
