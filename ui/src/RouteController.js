@@ -19,10 +19,11 @@ export async function createUser(obj){
     try{
         const response = await axios.post('http://localhost:8080/users', obj);
         console.log(response);
+        return true;
     }catch (error){
         console.log(error);
+        return false;
     }
-    return "";
 }
 
 

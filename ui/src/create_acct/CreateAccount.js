@@ -3,8 +3,10 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import {createUser} from "../RouteController";
 import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
 import BackgroundImage from "../components/BackgroundImage";
 import CenterImage from "../components/CenterImage";
+import { RoutingWrapper } from "../services/RoutingWrapper";
 
 
 class CreateAccount extends React.Component 
@@ -15,15 +17,38 @@ class CreateAccount extends React.Component
         name: "",
         username: "",
         password: "",
-        email: ""
+        email: "",
+        error: false
     };
   }
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  routeChange = () => {
+    this.props.navigate('/home');
+  }
+
   handleSubmit () {
-    createUser(this.state);
+    const validate = async () => {
+      const response = await createUser(this.state);
+      if (!response) {
+        console.log('Setting error state');
+        this.setState({
+          name: "",
+          username: "",
+          password: "",
+          email: "",
+          error: true});
+        return null;
+      } else {
+          // route to home page
+          this.setState({error: false});
+          console.log('created account successfully');
+          this.routeChange();
+        }
+      }
+      validate();
   }
 
 
@@ -85,6 +110,8 @@ class CreateAccount extends React.Component
           onChange={this.handleChange.bind(this)}
         />
       <Button variant="contained" onClick={this.handleSubmit.bind(this)}>Create Account</Button>
+
+      {this.props.error ? <Alert severity="error">This is an error alert — check it out!</Alert> : <></>}
       </div>
     </Box>
     </React.Fragment>
@@ -92,4 +119,4 @@ class CreateAccount extends React.Component
 }
 }
 
-export default CreateAccount;
+export default RoutingWrapper(CreateAccount);
