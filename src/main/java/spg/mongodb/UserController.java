@@ -1,6 +1,7 @@
 package spg.mongodb;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,13 @@ public class UserController {
             repository.save(user);
             return new ResponseEntity<>("Success", HttpStatus.CREATED);
         }
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(path="/login", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Boolean checkLoginCredentials(@RequestBody User user) {
+        User u = repository.findByUsernameAndPassword(user.username, user.password);
+        return u != null;
     }
 
 }

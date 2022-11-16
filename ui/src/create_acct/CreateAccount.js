@@ -1,10 +1,10 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { Input } from "@mui/material";
 import {createUser} from "../RouteController";
 import Button from '@mui/material/Button';
 import BackgroundImage from "../components/BackgroundImage";
+import CenterImage from "../components/CenterImage";
 
 
 class CreateAccount extends React.Component 
@@ -31,10 +31,11 @@ class CreateAccount extends React.Component
   return (
     <React.Fragment>
       <BackgroundImage/>
+      <CenterImage/>
     <Box
       component="form"
       sx={{
-        "& .MuiTextField-root": { m: 1, width: "50ch", display: "flex" }
+        "& .MuiTextField-root": { m: 1, width: "50ch", display: "flex", background: "rgb(232, 241, 250)" }
       }}
       noValidate
       autoComplete="off"
