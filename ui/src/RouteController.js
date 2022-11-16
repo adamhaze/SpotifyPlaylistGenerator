@@ -2,9 +2,9 @@ const axios = require('axios').default;
 
 export function createUser(obj){
 
-    // console.log(obj)
+    console.log(obj)
 
-    axios.get('http://localhost:8080/users')
+    axios.post('http://localhost:8080/users', obj)
         .then(function (response) {
             // handle success
             console.log(response);

@@ -3,6 +3,7 @@ package spg.mongodb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,12 +13,11 @@ public class UserController {
     private UserRepository repository;
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping(path="/users",  produces = "text/plain;charset=UTF-8")
-    public String saveUserToDB() {
+    @PostMapping(path="/users")
+    public User saveUserToDB(@Validated @RequestBody User user) {
+        System.out.println(user);
         repository.deleteAll();
-        repository.save(new User("Adam", "adamhaze", "mypassword", "adamhayes1515@gmail.com"));
-
-        return "this is a test";
+        return repository.save(user);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
