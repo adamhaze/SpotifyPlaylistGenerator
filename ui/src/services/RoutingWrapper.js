@@ -2,7 +2,7 @@
 
 import { useNavigate } from 'react-router-dom';
 
-export const RoutingFunc = (Component) => {
+export const RoutingWrapper = (Component) => {
   const Wrapper = (props) => {
     const navigate = useNavigate();
     

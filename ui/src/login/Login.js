@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import BackgroundImage from "../components/BackgroundImage";
 import CenterImage from "../components/CenterImage";
 import { validateLogin } from "../RouteController";
-import { RoutingFunc } from "../services/RoutingFunc";
+import { RoutingWrapper } from "../services/RoutingWrapper";
 
 class Login extends React.Component {
     constructor(props){
@@ -90,4 +90,4 @@ class Login extends React.Component {
 
 }
 
-export default RoutingFunc(Login);
+export default RoutingWrapper(Login);
