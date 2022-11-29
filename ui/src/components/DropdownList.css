@@ -1,0 +1,16 @@
+
+.dropdown{
+    background-color:rgb(232, 241, 250) ;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid grey;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 5px;
+}
+
+.dropdown-row{
+    cursor: pointer;
+    text-align: center;
+    margin: 5px 0;
+}

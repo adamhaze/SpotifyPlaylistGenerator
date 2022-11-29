@@ -1,9 +1,10 @@
 import * as React from "react";
 import Button from '@mui/material/Button';
+import "./UserHomePage.css";
 import BackgroundImage from "../components/BackgroundImage";
 // import CenterImage from "../components/CenterImage";
 import SearchBar from "../components/SearchBar";
-import "./UserHomePage.css";
+import DropdownList from "../components/DropdownList";
 import { getRelatedSongs } from "../RouteController";
 
 
@@ -16,7 +17,8 @@ class UserHomePage extends React.Component {
             username: "",
             password: "",
             error: false,
-            songCurrent: ""
+            songCurrent: "",
+            suggestedSongs: []
         }
     }
 
@@ -31,7 +33,7 @@ class UserHomePage extends React.Component {
             if (!response) {
                 this.setState({error: true});
             } else {
-                this.setState({error: false});
+                this.setState({error: false, suggestedSongs: response});
                 console.log(response);
             }
         }
@@ -51,6 +53,9 @@ class UserHomePage extends React.Component {
                 <Button variant="contained"
                     sx={{display: "flex", ml: "auto", mr: "auto", mt: 2}}
                     onClick={this.handleSubmit.bind(this)}>Search</Button>
+                {this.state.suggestedSongs.length > 0 && 
+                    <DropdownList suggestedSongs={this.state.suggestedSongs}/>
+                }
             </React.Fragment>
         )
     }

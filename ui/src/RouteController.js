@@ -42,8 +42,11 @@ export async function validateLogin(obj) {
 
 export async function getRelatedSongs(obj) {
     try {
-        // return ['song1', 'song2', 'song3'];
-        return false;
+        const songs = [{name: 'song1', artist: 'artist 1', id: 'song id 1'},
+                        {name: 'song2', artist: 'artist 2', id: 'song id 2'},
+                        {name: 'song3', artist: 'artist 3', id: 'song id 3'}]
+        return songs;
+        // return false;
     } catch (error) {
         return error.data;
     }
