@@ -39,3 +39,12 @@ export async function validateLogin(obj) {
         return error.data;
     }
 }
+
+export async function getRelatedSongs(obj) {
+    try {
+        // return ['song1', 'song2', 'song3'];
+        return false;
+    } catch (error) {
+        return error.data;
+    }
+}
