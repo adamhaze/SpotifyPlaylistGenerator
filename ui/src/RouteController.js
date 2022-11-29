@@ -40,6 +40,9 @@ export async function validateLogin(obj) {
     }
 }
 
+// obj = song title (string)
+// TODO: make axios.post() to query spotify API from backend, return list of song objects
+// response: return something like 'songs' template below
 export async function getRelatedSongs(obj) {
     try {
         const songs = [{name: 'song1', artist: 'artist 1', id: 'song id 1'},
