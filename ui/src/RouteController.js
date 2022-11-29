@@ -41,7 +41,7 @@ export async function validateLogin(obj) {
 }
 
 // obj = song title (string)
-// TODO: make axios.post() to query spotify API from backend, return list of song objects
+// TODO: make axios.post() to query spotify API from backend, respond w/ list of song objects
 // response: return something like 'songs' template below
 export async function getRelatedSongs(obj) {
     try {
@@ -53,4 +53,9 @@ export async function getRelatedSongs(obj) {
     } catch (error) {
         return error.data;
     }
+}
+
+export async function buildPlaylist(obj) {
+    // TODO: same format as getRelatedSongs() except :obj: is now a list of song objects
+    // but still want to respond with a list of song objects
 }

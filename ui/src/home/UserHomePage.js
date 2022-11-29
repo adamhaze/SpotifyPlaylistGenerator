@@ -52,6 +52,10 @@ class UserHomePage extends React.Component {
         console.log(this.state);
     }
 
+    generatePlaylist() {
+        console.log('Generate a playlist...');
+    }
+
 
     render () {
         return (
@@ -75,7 +79,11 @@ class UserHomePage extends React.Component {
                                 <div className="dropdown-row" key={song.id}> {song.name} by {song.artist} </div>
                             ))}
                         </div>
+                    <Button variant="contained" color="success" size="large"
+                        sx={{display: "flex", ml: "auto", mr: "auto", mt: 2}}
+                        onClick={this.generatePlaylist.bind(this)}>Generate Playlist!</Button>
                     </div>
+
                 }
             </React.Fragment>
         )
