@@ -8,6 +8,7 @@ export default function SearchBar(props) {
             label="Search For Song" 
             variant="outlined" 
             name="songCurrent"
+            value={props.songCurrent}
             onChange={props.handleChange}
             error={props.error}
             helperText={props.error ? 'Did not recognize that song title...' : ''}

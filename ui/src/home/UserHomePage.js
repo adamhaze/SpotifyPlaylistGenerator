@@ -5,6 +5,7 @@ import BackgroundImage from "../components/BackgroundImage";
 // import CenterImage from "../components/CenterImage";
 import SearchBar from "../components/SearchBar";
 import DropdownList from "../components/DropdownList";
+import "../components/DropdownList.css";
 import { getRelatedSongs } from "../RouteController";
 
 
@@ -18,7 +19,8 @@ class UserHomePage extends React.Component {
             password: "",
             error: false,
             songCurrent: "",
-            suggestedSongs: []
+            suggestedSongs: [],
+            selectedSongs: []
         }
     }
 
@@ -41,6 +43,15 @@ class UserHomePage extends React.Component {
         related();
     }
 
+    addSelectedSong(songObject) {
+        // this.setState(({selectedSongs}) => ({ selectedSongs: {...selectedSongs, songObject}}));
+        this.setState( prevState => ({
+            selectedSongs: [...prevState.selectedSongs, songObject]
+        }));
+        this.setState({suggestedSongs: [], songCurrent: ""});
+        console.log(this.state);
+    }
+
 
     render () {
         return (
@@ -49,12 +60,22 @@ class UserHomePage extends React.Component {
                 <div>
                     <h1 className="header-text">User Home Page</h1>
                 </div>
-                <SearchBar handleChange={this.handleChange.bind(this)} error={this.state.error}/>
+                <SearchBar handleChange={this.handleChange.bind(this)} error={this.state.error} songCurrent={this.state.songCurrent}/>
                 <Button variant="contained"
                     sx={{display: "flex", ml: "auto", mr: "auto", mt: 2}}
                     onClick={this.handleSubmit.bind(this)}>Search</Button>
                 {this.state.suggestedSongs.length > 0 && 
-                    <DropdownList suggestedSongs={this.state.suggestedSongs}/>
+                    <DropdownList suggestedSongs={this.state.suggestedSongs} addSong={this.addSelectedSong.bind(this)}/>
+                }
+                {this.state.selectedSongs.length > 0 &&
+                    <div>
+                        <h2 className="song-list">Your songs to generate a playlist from:</h2>
+                        <div className="dropdown">
+                            {this.state.selectedSongs.map((song) => (
+                                <div className="dropdown-row" key={song.id}> {song.name} by {song.artist} </div>
+                            ))}
+                        </div>
+                    </div>
                 }
             </React.Fragment>
         )
