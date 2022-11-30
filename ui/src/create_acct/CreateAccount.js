@@ -26,7 +26,7 @@ class CreateAccount extends React.Component
   }
 
   routeChange = () => {
-    this.props.navigate('/home');
+    this.props.navigate('/home', {state: {username: this.state.username, password: this.state.password}});
   }
 
   handleSubmit () {

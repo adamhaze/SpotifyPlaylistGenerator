@@ -7,16 +7,15 @@ import SearchBar from "../components/SearchBar";
 import DropdownList from "../components/DropdownList";
 import "../components/DropdownList.css";
 import { getRelatedSongs } from "../RouteController";
+import { RoutingWrapper } from "../services/RoutingWrapper";
 
 
 class UserHomePage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            name: "",
-            email: "",
-            username: "",
-            password: "",
+            username: this.props.location.state.username,
+            password: this.props.location.state.password,
             error: false,
             songCurrent: "",
             suggestedSongs: [],
@@ -90,4 +89,4 @@ class UserHomePage extends React.Component {
     }
 }
 
-export default UserHomePage;
+export default RoutingWrapper(UserHomePage);

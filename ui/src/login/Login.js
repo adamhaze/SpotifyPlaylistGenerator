@@ -6,6 +6,8 @@ import BackgroundImage from "../components/BackgroundImage";
 import CenterImage from "../components/CenterImage";
 import { validateLogin } from "../RouteController";
 import { RoutingWrapper } from "../services/RoutingWrapper";
+import { Navigate } from "react-router-dom";
+
 
 class Login extends React.Component {
     constructor(props){
@@ -24,7 +26,8 @@ class Login extends React.Component {
     }
 
     routeChange = () => {
-        this.props.navigate('/home');
+        this.props.navigate('/home', {state: {username: this.state.username, password: this.state.password}});
+        // this.props.navigate('/home', {replace: true});
     }
 
     handleSubmit = () => {
@@ -82,6 +85,7 @@ class Login extends React.Component {
                     />
                     <Button variant="contained" onClick={this.handleSubmit.bind(this)}>Login</Button>
                     </div>
+                    {/* {this.state.s && <Navigate to="/home" state={this.state}/>} */}
                 </Box>
             </React.Fragment>
         )
