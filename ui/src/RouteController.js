@@ -7,15 +7,12 @@ const axios = require('axios').default;
 
 //https://gist.github.com/donstefani/70ef1069d4eab7f2339359526563aab2
 async function getAuth(){
-    const client_id = '1818069e79754a598ba2c587d43d0ec5';
-    const client_secret = 'bf98b89f33c34c0880520a34bded89ac';
-
     const data = { grant_type: "client_credentials"};
     const headers = {
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/x-www-form-urlencoded',
-            Authorization: 'Basic ' + Buffer.from(`${client_id}:${client_secret}`, 'utf-8').toString('base64'),
+            Authorization: 'Basic ' + Buffer.from(`${process.env.REACT_APP_CLIENT_ID}:${process.env.REACT_APP_CLIENT_SECRET}`, 'utf-8').toString('base64'),
         },
     };
 
@@ -26,10 +23,11 @@ async function getAuth(){
             headers
         );
 
-        console.log(response.data);
+        // console.log(response.data);
         return response.data.access_token;
     }catch(error){
         console.error(error);
+        return error;
     }
 }
 
@@ -70,7 +68,7 @@ export async function getRelatedSongs(obj) {
         const auth_token = await getAuth();
 
         const data = {
-            params: {q: obj, type: 'track', limit: 10},
+            params: {q: obj, type: 'track', limit: 5},
             headers:{
                 Accept : 'application/json',
                 'Content-Type': "application/json",
@@ -82,14 +80,21 @@ export async function getRelatedSongs(obj) {
             'https://api.spotify.com/v1/search', 
             data
         );
-        console.log(response.data);
 
+        const tracksList = response.data.tracks.items;
 
-        const songs = [{name: 'song1', artist: 'artist 1', id: 'song id 1'},
-                        {name: 'song2', artist: 'artist 2', id: 'song id 2'},
-                        {name: 'song3', artist: 'artist 3', id: 'song id 3'}]
+        let songs = [];
+        for (const prop in tracksList){
+            const result = tracksList[prop];
+            // console.log(result);
+            let songName = result.name;
+            let artistName = result.artists[0].name;
+            let songId = result.id;
+            let song = {name: songName, artist: artistName, id: songId};
+            songs.push(song);
+        }
+
         return songs;
-        // return false;
     } catch (error) {
         return error.data;
     }
