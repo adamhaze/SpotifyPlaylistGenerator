@@ -6,7 +6,7 @@ import BackgroundImage from "../components/BackgroundImage";
 import SearchBar from "../components/SearchBar";
 import DropdownList from "../components/DropdownList";
 import "../components/DropdownList.css";
-import { getRelatedSongs } from "../RouteController";
+import { getRelatedSongs, buildPlaylist } from "../RouteController";
 
 
 class UserHomePage extends React.Component {
@@ -53,7 +53,12 @@ class UserHomePage extends React.Component {
     }
 
     generatePlaylist() {
-        console.log('Generate a playlist...');
+        const build = async () => {
+            const response = await buildPlaylist(this.state.selectedSongs);
+            console.log(response);
+        }
+
+        build();
     }
 
 

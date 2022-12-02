@@ -103,4 +103,6 @@ export async function getRelatedSongs(obj) {
 export async function buildPlaylist(obj) {
     // TODO: same format as getRelatedSongs() except :obj: is now a list of song objects
     // but still want to respond with a list of song objects
+    console.log("Inside buildPlaylist");
+    
 }
