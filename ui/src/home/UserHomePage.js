@@ -6,7 +6,7 @@ import BackgroundImage from "../components/BackgroundImage";
 import SearchBar from "../components/SearchBar";
 import DropdownList from "../components/DropdownList";
 import "../components/DropdownList.css";
-import { getRelatedSongs } from "../RouteController";
+import { getRelatedSongs, buildPlaylist } from "../RouteController";
 import { RoutingWrapper } from "../services/RoutingWrapper";
 
 
@@ -31,7 +31,7 @@ class UserHomePage extends React.Component {
     handleSubmit() {
         const related = async () => {
             const response = await getRelatedSongs(this.state.songCurrent);
-            console.log(response);
+            // console.log(response);
             if (!response) {
                 this.setState({error: true});
             } else {
@@ -53,7 +53,12 @@ class UserHomePage extends React.Component {
     }
 
     generatePlaylist() {
+        const playlist = async () => {
+            const response = await buildPlaylist(this.state.selectedSongs);
+            console.log(response);
+        }
         console.log('Generate a playlist...');
+        playlist();
     }
 
 
