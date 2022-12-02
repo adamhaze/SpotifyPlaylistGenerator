@@ -7,16 +7,15 @@ import SearchBar from "../components/SearchBar";
 import DropdownList from "../components/DropdownList";
 import "../components/DropdownList.css";
 import { getRelatedSongs, buildPlaylist } from "../RouteController";
+import { RoutingWrapper } from "../services/RoutingWrapper";
 
 
 class UserHomePage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            name: "",
-            email: "",
-            username: "",
-            password: "",
+            username: this.props.location.state.username,
+            password: this.props.location.state.password,
             error: false,
             songCurrent: "",
             suggestedSongs: [],
@@ -32,6 +31,7 @@ class UserHomePage extends React.Component {
     handleSubmit() {
         const related = async () => {
             const response = await getRelatedSongs(this.state.songCurrent);
+            // console.log(response);
             if (!response) {
                 this.setState({error: true});
             } else {
@@ -53,12 +53,12 @@ class UserHomePage extends React.Component {
     }
 
     generatePlaylist() {
-        const build = async () => {
+        const playlist = async () => {
             const response = await buildPlaylist(this.state.selectedSongs);
             console.log(response);
         }
-
-        build();
+        console.log('Generate a playlist...');
+        playlist();
     }
 
 
@@ -95,4 +95,4 @@ class UserHomePage extends React.Component {
     }
 }
 
-export default UserHomePage;
+export default RoutingWrapper(UserHomePage);
