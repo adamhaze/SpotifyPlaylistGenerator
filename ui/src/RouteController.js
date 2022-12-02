@@ -1,21 +1,40 @@
+import { Buffer } from 'buffer';
+import qs from 'qs';
 const axios = require('axios').default;
+
+
+//https://ritvikbiswas.medium.com/connecting-to-the-spotify-api-using-node-js-and-axios-client-credentials-flow-c769e2bee818
+
+//https://gist.github.com/donstefani/70ef1069d4eab7f2339359526563aab2
+async function getAuth(){
+    const data = { grant_type: "client_credentials"};
+    const headers = {
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            Authorization: 'Basic ' + Buffer.from(`${process.env.REACT_APP_CLIENT_ID}:${process.env.REACT_APP_CLIENT_SECRET}`, 'utf-8').toString('base64'),
+        },
+    };
+
+    try{
+        const response = await axios.post(
+            'https://accounts.spotify.com/api/token',
+            qs.stringify(data),
+            headers
+        );
+
+        // console.log(response.data);
+        return response.data.access_token;
+    }catch(error){
+        console.error(error);
+        return error;
+    }
+}
 
 export async function createUser(obj){
 
     console.log(obj)
-    //
-    // axios.post('http://localhost:8080/users', obj)
-    //     .then(function (response) {
-    //         // handle success
-    //         console.log(response);
-    //     })
-    //     .catch(function (error) {
-    //         // handle error
-    //         console.log(error);
-    //     })
-    //     .then(function () {
-    //         // always executed
-    //     });
+
     try{
         const response = await axios.post('http://localhost:8080/users', obj);
         console.log(response);
@@ -44,12 +63,38 @@ export async function validateLogin(obj) {
 // TODO: make axios.post() to query spotify API from backend, respond w/ list of song objects
 // response: return something like 'songs' template below
 export async function getRelatedSongs(obj) {
+    console.log("Song input:" + obj);
     try {
-        const songs = [{name: 'song1', artist: 'artist 1', id: 'song id 1'},
-                        {name: 'song2', artist: 'artist 2', id: 'song id 2'},
-                        {name: 'song3', artist: 'artist 3', id: 'song id 3'}]
+        const auth_token = await getAuth();
+
+        const data = {
+            params: {q: obj, type: 'track', limit: 5},
+            headers:{
+                Accept : 'application/json',
+                'Content-Type': "application/json",
+                Authorization: 'Bearer ' + auth_token,
+            }
+        }
+
+        const response = await axios.get(
+            'https://api.spotify.com/v1/search', 
+            data
+        );
+
+        const tracksList = response.data.tracks.items;
+
+        let songs = [];
+        for (const prop in tracksList){
+            const result = tracksList[prop];
+            // console.log(result);
+            let songName = result.name;
+            let artistName = result.artists[0].name;
+            let songId = result.id;
+            let song = {name: songName, artist: artistName, id: songId};
+            songs.push(song);
+        }
+
         return songs;
-        // return false;
     } catch (error) {
         return error.data;
     }
