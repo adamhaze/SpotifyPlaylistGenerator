@@ -31,6 +31,7 @@ class UserHomePage extends React.Component {
     handleSubmit() {
         const related = async () => {
             const response = await getRelatedSongs(this.state.songCurrent);
+            console.log(response);
             if (!response) {
                 this.setState({error: true});
             } else {
