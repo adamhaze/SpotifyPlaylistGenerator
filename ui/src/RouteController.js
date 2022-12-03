@@ -59,6 +59,18 @@ export async function validateLogin(obj) {
     }
 }
 
+export async function getUserEmail(obj) {
+    try {
+        const response = await axios.post('http://localhost:8080/getEmail', {
+            'username': obj.username,
+            'password': obj.password
+        })
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 // obj = song title (string)
 // TODO: make axios.post() to query spotify API from backend, respond w/ list of song objects
 // response: return something like 'songs' template below
@@ -110,3 +122,4 @@ export async function buildPlaylist(obj) {
         console.log(error);
     }
 }
+

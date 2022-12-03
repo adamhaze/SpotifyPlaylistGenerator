@@ -6,7 +6,7 @@ import BackgroundImage from "../components/BackgroundImage";
 import SearchBar from "../components/SearchBar";
 import DropdownList from "../components/DropdownList";
 import "../components/DropdownList.css";
-import { getRelatedSongs, buildPlaylist } from "../RouteController";
+import { getRelatedSongs, buildPlaylist, getUserEmail } from "../RouteController";
 import { RoutingWrapper } from "../services/RoutingWrapper";
 
 
@@ -16,6 +16,7 @@ class UserHomePage extends React.Component {
         this.state = {
             username: this.props.location.state.username,
             password: this.props.location.state.password,
+            email: "",
             error: false,
             songCurrent: "",
             suggestedSongs: [],
@@ -52,6 +53,10 @@ class UserHomePage extends React.Component {
         console.log(this.state);
     }
 
+    routeChange = () => {
+        this.props.navigate('/generated', {state: {username: this.state.username, password: this.state.password}});
+    }
+
     generatePlaylist() {
         const playlist = async () => {
             const response = await buildPlaylist(this.state.selectedSongs);
@@ -59,6 +64,15 @@ class UserHomePage extends React.Component {
         }
         console.log('Generate a playlist...');
         playlist();
+    }
+
+    componentDidMount() {
+        // get user email address to use as unique identifier
+        const email = async () => {
+            const response = await getUserEmail(this.state);
+            this.setState({email: response})
+        }
+        email();
     }
 
 

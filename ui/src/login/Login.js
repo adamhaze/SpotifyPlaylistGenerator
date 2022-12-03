@@ -6,7 +6,6 @@ import BackgroundImage from "../components/BackgroundImage";
 import CenterImage from "../components/CenterImage";
 import { validateLogin } from "../RouteController";
 import { RoutingWrapper } from "../services/RoutingWrapper";
-import { Navigate } from "react-router-dom";
 
 
 class Login extends React.Component {

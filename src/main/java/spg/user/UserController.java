@@ -34,6 +34,13 @@ public class UserController {
         return u != null;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(path="/getEmail", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String getUserEmail(@RequestBody User user) {
+        User u = repository.findByUsernameAndPassword(user.username, user.password);
+        return u.email;
+    }
+
 }
 
 
