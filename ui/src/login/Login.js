@@ -19,20 +19,22 @@ class Login extends React.Component {
         }
     }
 
+    // update change in state
     handleChange(e) {
         this.setState({ [e.target.name]: e.target.value });
-        // console.log(this.state);
     }
 
+    // maintain user info through state when navigating to user home page
     routeChange = () => {
         this.props.navigate('/home', {state: {username: this.state.username, password: this.state.password}});
-        // this.props.navigate('/home', {replace: true});
     }
 
+    // handle validating login credentials
     handleSubmit = () => {
         const validate = async () => {
             const response = await validateLogin(this.state);
             if (!response) {
+                // invalid login credentials
                 this.setState({error: true});
                 return null;
             } else {

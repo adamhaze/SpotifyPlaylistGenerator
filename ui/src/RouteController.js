@@ -31,10 +31,9 @@ async function getAuth(){
     }
 }
 
+// send JSON object with user info to create entry for user in DB
 export async function createUser(obj){
-
     console.log(obj)
-
     try{
         const response = await axios.post('http://localhost:8080/users', obj);
         console.log(response);
@@ -45,7 +44,7 @@ export async function createUser(obj){
     }
 }
 
-
+// send login credentials to backend to check against DB
 export async function validateLogin(obj) {
     try {
         console.log("in validateLogin...")
@@ -59,6 +58,7 @@ export async function validateLogin(obj) {
     }
 }
 
+// from login credentials, get user email for unique identification
 export async function getUserEmail(obj) {
     try {
         const response = await axios.post('http://localhost:8080/getEmail', {
@@ -72,8 +72,7 @@ export async function getUserEmail(obj) {
 }
 
 // obj = song title (string)
-// TODO: make axios.post() to query spotify API from backend, respond w/ list of song objects
-// response: return something like 'songs' template below
+// take user input and query Spotify API for song results
 export async function getRelatedSongs(obj) {
     console.log("Song input:" + obj);
     try {
@@ -112,9 +111,8 @@ export async function getRelatedSongs(obj) {
     }
 }
 
+// send object containing user selected songs (strings) to backend for playlist generation
 export async function buildPlaylist(obj) {
-    // TODO: same format as getRelatedSongs() except :obj: is now a list of song objects
-    // but still want to respond with a list of song objects
     try {
         const response = await axios.post('http://localhost:8080/buildPlaylist',obj);
         console.log('In build playlist...');
@@ -124,7 +122,7 @@ export async function buildPlaylist(obj) {
     }
 }
 
-
+// send state data from DisplayGeneratedPlaylist to create a Playlist entry in DB
 export async function savePlaylistToDB(obj) {
     try {
         const response = await axios.post('http://localhost:8080/savePlaylist',obj);

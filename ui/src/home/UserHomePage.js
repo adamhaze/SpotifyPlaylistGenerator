@@ -26,26 +26,32 @@ class UserHomePage extends React.Component {
         }
     }
 
+    // update given state property
+	// used by: search bar
     handleChange(e) {
         this.setState({ [e.target.name]: e.target.value });
-        // console.log(this.state);
     }
 
+    // execute search functionality, used by: search button
     handleSubmit() {
         const related = async () => {
+            // get response from RouteController
             const response = await getRelatedSongs(this.state.songCurrent);
-            // console.log(response);
             if (!response) {
+                // Spotify search couldn't handle user input
                 this.setState({error: true});
             } else {
+                // save list of returned songs from search to the state
                 this.setState({error: false, suggestedSongs: response});
                 console.log(response);
             }
         }
-        // console.log(this.state);
         related();
     }
 
+    // when user selects song from dropdown (results of search), add it to their
+    // list of songs used to build a playlist for them in state for convenience
+    // used by: DropdownList
     addSelectedSong(songObject) {
         // this.setState(({selectedSongs}) => ({ selectedSongs: {...selectedSongs, songObject}}));
         this.setState( prevState => ({
@@ -61,7 +67,7 @@ class UserHomePage extends React.Component {
     }
 
     generatePlaylist() {
-        // build playlist on backend, route new page to display the playlist
+        // build playlist on backend, save generated playlist to state for accessibility
         const playlist = async () => {
             const response = await buildPlaylist(this.state.selectedSongs);
             this.setState({playlistCurrent: response, playlistGenerated: true})
@@ -71,6 +77,9 @@ class UserHomePage extends React.Component {
         playlist();
     }
 
+
+    // when page is loaded (from login) need to get user email from DB
+    // b/c only username and password are saved from Login
     componentDidMount() {
         // get user email address to use as unique identifier
         const email = async () => {
@@ -80,6 +89,8 @@ class UserHomePage extends React.Component {
         email();
     }
 
+    // send user to display page if they generated a playlist
+    // on update b/c route change should be triggered by a state update
     componentDidUpdate() {
         if (this.state.playlistGenerated){
             this.routeChange();

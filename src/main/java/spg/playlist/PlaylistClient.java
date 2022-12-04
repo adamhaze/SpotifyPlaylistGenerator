@@ -33,7 +33,7 @@ public class PlaylistClient {
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(path="/savePlaylist", produces = MediaType.APPLICATION_JSON_VALUE)
     public Boolean savePlaylist(@RequestBody Playlist p) {
-//        if (repository.findFirstByEmail(p.email) != null){ return false; }
+        // don't save playlist if one with same name already exists for current user
         if (repository.findByNameAndEmail(p.name,p.email) != null){ return false; }
         repository.save(p);
         return true;

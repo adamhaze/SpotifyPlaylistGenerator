@@ -21,19 +21,23 @@ class DisplayGeneratedPlaylist extends React.Component {
 		}
 	}
 
+	// update given state property
+	// used by: playlist name input
 	handleChange(e) {
         this.setState({ [e.target.name]: e.target.value });
-        // console.log(this.state);
     }
 
+
+	// check is user already has playlist with same name
+	// if so, force rename
+	// else, save playlist to db, route back to home page
+	// used by: Save Playlist! button
 	savePlaylist() {
-		// check is user already has playlist with same name
-		// if so, force rename
-		// else, save playlist to db, route back to home page
-		// used by: Save Playlist! button
 		const saver = async () => {
+			// get response from RouteController
 			const response = await savePlaylistToDB(this.state);
 			if (!response) {
+				// user already has playlist w/ that name
 				this.setState({error: true});
 			} else {
 				this.setState({error: false});
@@ -42,6 +46,8 @@ class DisplayGeneratedPlaylist extends React.Component {
 		saver();
 	}
 
+	// adjust state to realize user wants to save their playlist
+	// used by: YES button
 	savePlaylistFlag() {
 		this.setState({save: true})
 	}
