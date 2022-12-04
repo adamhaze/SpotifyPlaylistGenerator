@@ -63,7 +63,10 @@ class UserHomePage extends React.Component {
 
     routeChange = () => {
         // navigate to new page for displaying the generated playlist
-        this.props.navigate('/generated', {state: {email: this.state.email, songs: this.state.playlistCurrent}});
+        this.props.navigate('/generated', {state: {email: this.state.email, 
+                                                    songs: this.state.playlistCurrent,
+                                                    username: this.state.username,
+                                                    password: this.state.password}});
     }
 
     generatePlaylist() {
@@ -87,6 +90,7 @@ class UserHomePage extends React.Component {
             this.setState({email: response})
         }
         email();
+        console.log(this.state);
     }
 
     // send user to display page if they generated a playlist

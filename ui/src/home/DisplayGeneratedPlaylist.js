@@ -15,6 +15,8 @@ class DisplayGeneratedPlaylist extends React.Component {
 		this.state = {
 			email: this.props.location.state.email,
 			songs: this.props.location.state.songs,
+			username: this.props.location.state.username,
+			password: this.props.location.state.password,
 			name: "",
 			error: false,
 			save: false
@@ -56,6 +58,11 @@ class DisplayGeneratedPlaylist extends React.Component {
 		console.log(this.state);
 	}
 
+	// maintain user info through state when navigating to user home page
+    routeChange = () => {
+        this.props.navigate('/home', {state: {username: this.state.username, password: this.state.password}});
+    }
+
 
 	render () {
 		return (
@@ -74,7 +81,7 @@ class DisplayGeneratedPlaylist extends React.Component {
 					<Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
 						<ButtonGroup variant="contained" size="large">
 							<Button color="success" onClick={this.savePlaylistFlag.bind(this)}> YES </Button>
-							<Button color="error"> NO </Button>
+							<Button color="error" onClick={this.routeChange.bind(this)}> NO </Button>
 						</ButtonGroup>
 					</Box>
 					{this.state.save && 
