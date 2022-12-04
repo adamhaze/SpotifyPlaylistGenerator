@@ -8,7 +8,9 @@ public class PlaylistBuilder {
     ArrayList<Song> querySongs;
 
     public PlaylistBuilder(ArrayList<Song> songs){
+
         this.querySongs = songs;
+        this.playlist = new Playlist(songs, "", "");
     }
 
     public void addSong(){

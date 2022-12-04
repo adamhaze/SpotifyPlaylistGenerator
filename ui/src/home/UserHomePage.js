@@ -20,7 +20,9 @@ class UserHomePage extends React.Component {
             error: false,
             songCurrent: "",
             suggestedSongs: [],
-            selectedSongs: []
+            selectedSongs: [],
+            playlistCurrent: [],
+            playlistGenerated: false
         }
     }
 
@@ -54,13 +56,16 @@ class UserHomePage extends React.Component {
     }
 
     routeChange = () => {
-        this.props.navigate('/generated', {state: {username: this.state.username, password: this.state.password}});
+        // navigate to new page for displaying the generated playlist
+        this.props.navigate('/generated', {state: {email: this.state.email, songs: this.state.playlistCurrent}});
     }
 
     generatePlaylist() {
+        // build playlist on backend, route new page to display the playlist
         const playlist = async () => {
             const response = await buildPlaylist(this.state.selectedSongs);
-            console.log(response);
+            this.setState({playlistCurrent: response, playlistGenerated: true})
+            console.log(this.state);
         }
         console.log('Generate a playlist...');
         playlist();
@@ -73,6 +78,12 @@ class UserHomePage extends React.Component {
             this.setState({email: response})
         }
         email();
+    }
+
+    componentDidUpdate() {
+        if (this.state.playlistGenerated){
+            this.routeChange();
+        }
     }
 
 

@@ -117,7 +117,20 @@ export async function buildPlaylist(obj) {
     // but still want to respond with a list of song objects
     try {
         const response = await axios.post('http://localhost:8080/buildPlaylist',obj);
+        console.log('In build playlist...');
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+export async function savePlaylistToDB(obj) {
+    try {
+        const response = await axios.post('http://localhost:8080/savePlaylist',obj);
         console.log(response.data);
+        return response.data;
+
     } catch (error) {
         console.log(error);
     }

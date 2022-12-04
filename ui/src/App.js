@@ -5,6 +5,7 @@ import CreateAccount from "./create_acct/CreateAccount";
 import SplashPage from "./splash/SplashPage";
 import Login from "./login/Login";
 import UserHomePage from "./home/UserHomePage";
+import DisplayGeneratedPlaylist from "./home/DisplayGeneratedPlaylist";
 
 const App = () =>
   <Router>
@@ -14,6 +15,7 @@ const App = () =>
       <Route exact path="/register" element={<CreateAccount/>} />
       <Route exact path="/login" element={<Login/>} />
       <Route exact path="/home" element={<UserHomePage/>} />
+      <Route exact path="/generated" element={<DisplayGeneratedPlaylist/>} />
       {/* <Route element={<CreateAccount/>} /> */}
     </Routes>
   </div>
