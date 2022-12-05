@@ -97,11 +97,12 @@ export async function getRelatedSongs(obj) {
         let songs = [];
         for (const prop in tracksList){
             const result = tracksList[prop];
-            // console.log(result);
+            //console.log(result);
             let songName = result.name;
             let artistName = result.artists[0].name;
             let songId = result.id;
-            let song = {name: songName, artist: artistName, id: songId};
+            let artistId = result.artists[0].id;
+            let song = {name: songName, artist: artistName, id: songId, artist_id: artistId};
             songs.push(song);
         }
 

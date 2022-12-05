@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import spg.spotifyAPI.SpotifyCalls;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,7 @@ public class PlaylistClient {
     @PostMapping(path="/buildPlaylist", produces = MediaType.APPLICATION_JSON_VALUE)
     public ArrayList<Song> buildPlaylist(@RequestBody ArrayList<Song> songs){
         PlaylistBuilder builder = new PlaylistBuilder(songs);
+        SpotifyCalls.getTrack_Sync(songs.get(0).id);
 
 
         return builder.getPlaylist().songs;
