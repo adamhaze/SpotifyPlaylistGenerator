@@ -62,12 +62,18 @@ class UserHomePage extends React.Component {
         console.log(this.state);
     }
 
+    // used by: generate playlist button (via componentDidUpdate)
     routeChange = () => {
         // navigate to new page for displaying the generated playlist
         this.props.navigate('/generated', {state: {email: this.state.email, 
                                                     songs: this.state.playlistCurrent,
                                                     username: this.state.username,
                                                     password: this.state.password}});
+    }
+
+    // used by: AccountBoxIcon
+    routeChangeAcctInfo = () => {
+        this.props.navigate('/account', {state: {email: this.state.email, username: this.state.username, password: this.state.password}});
     }
 
     generatePlaylist() {
@@ -108,7 +114,7 @@ class UserHomePage extends React.Component {
             <React.Fragment>
                 <BackgroundImage/>
                 <div style={{display: 'flex',alignItems: 'center',flexDirection: "column",marginLeft: "75%"}}>
-                    <AccountBoxIcon sx={{fontSize: "75px","&:hover": { color: "grey" }}}/>
+                    <AccountBoxIcon onClick={this.routeChangeAcctInfo.bind(this)} sx={{fontSize: "75px","&:hover": { color: "grey" }}}/>
                     <span style={{fontSize: "100%"}}>My Account</span>
                 </div>
                 {/* <div>

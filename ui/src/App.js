@@ -6,6 +6,7 @@ import SplashPage from "./splash/SplashPage";
 import Login from "./login/Login";
 import UserHomePage from "./home/UserHomePage";
 import DisplayGeneratedPlaylist from "./home/DisplayGeneratedPlaylist";
+import AccountInfo from "./home/AccountInfo";
 
 const App = () =>
   <Router>
@@ -16,6 +17,7 @@ const App = () =>
       <Route exact path="/login" element={<Login/>} />
       <Route exact path="/home" element={<UserHomePage/>} />
       <Route exact path="/generated" element={<DisplayGeneratedPlaylist/>} />
+      <Route exact path="/account" element={<AccountInfo/>} />
       {/* <Route element={<CreateAccount/>} /> */}
     </Routes>
   </div>
