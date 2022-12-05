@@ -79,7 +79,7 @@ export async function getRelatedSongs(obj) {
         const auth_token = await getAuth();
 
         const data = {
-            params: {q: obj, type: 'track', limit: 5},
+            params: {q: obj, type: 'track', limit: 10},
             headers:{
                 Accept : 'application/json',
                 'Content-Type': "application/json",

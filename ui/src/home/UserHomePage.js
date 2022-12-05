@@ -1,5 +1,6 @@
 import * as React from "react";
 import Button from '@mui/material/Button';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import "./UserHomePage.css";
 import BackgroundImage from "../components/BackgroundImage";
 // import CenterImage from "../components/CenterImage";
@@ -106,16 +107,20 @@ class UserHomePage extends React.Component {
         return (
             <React.Fragment>
                 <BackgroundImage/>
-                <div>
-                    <h1 className="header-text">User Home Page</h1>
+                <div style={{display: 'flex',alignItems: 'center',flexDirection: "column",marginLeft: "75%"}}>
+                    <AccountBoxIcon sx={{fontSize: "75px","&:hover": { color: "grey" }}}/>
+                    <span style={{fontSize: "100%"}}>My Account</span>
                 </div>
+                {/* <div>
+                    <h1 className="header-text">User Home Page</h1>
+                </div> */}
                 <SearchBar handleChange={this.handleChange.bind(this)} error={this.state.error} songCurrent={this.state.songCurrent}/>
-                <Button variant="contained"
-                    sx={{display: "flex", ml: "auto", mr: "auto", mt: 2}}
-                    onClick={this.handleSubmit.bind(this)}>Search</Button>
                 {this.state.suggestedSongs.length > 0 && 
                     <DropdownList suggestedSongs={this.state.suggestedSongs} addSong={this.addSelectedSong.bind(this)}/>
                 }
+                <Button variant="contained"
+                    sx={{display: "flex", ml: "auto", mr: "auto", mt: 2}}
+                    onClick={this.handleSubmit.bind(this)}>Search</Button>
                 {this.state.selectedSongs.length > 0 &&
                     <div>
                         <h2 className="song-list">Your songs to generate a playlist from:</h2>
