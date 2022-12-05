@@ -135,3 +135,13 @@ export async function savePlaylistToDB(obj) {
     }
 }
 
+export async function getUserPlaylistsFromDB(obj) {
+    try {
+        const response = await axios.post('http://localhost:8080/getUserPlaylists',obj);
+        // console.log(response.data);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+}
+

@@ -114,7 +114,7 @@ class UserHomePage extends React.Component {
             <React.Fragment>
                 <BackgroundImage/>
                 <div style={{display: 'flex',alignItems: 'center',flexDirection: "column",marginLeft: "75%"}}>
-                    <AccountBoxIcon onClick={this.routeChangeAcctInfo.bind(this)} sx={{fontSize: "75px","&:hover": { color: "grey" }}}/>
+                    <AccountBoxIcon onClick={this.routeChangeAcctInfo.bind(this)} sx={{fontSize: "75px","&:hover": { color: "grey" }, cursor: "pointer"}}/>
                     <span style={{fontSize: "100%"}}>My Account</span>
                 </div>
                 {/* <div>

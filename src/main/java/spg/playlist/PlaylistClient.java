@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import spg.user.User;
 import spg.spotifyAPI.SpotifyCalls;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class PlaylistClient {
@@ -39,5 +41,12 @@ public class PlaylistClient {
         if (repository.findByNameAndEmail(p.name,p.email) != null){ return false; }
         repository.save(p);
         return true;
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(path="/getUserPlaylists", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Playlist> getAllUserPlaylists(@RequestBody User u) {
+//        System.out.println(repository.findByEmail(email));
+        return repository.findByEmail(u.email);
     }
 }
