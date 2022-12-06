@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 
 // const backgroundImage = 'https://musictech.com/wp-content/uploads/2021/01/spotify-airpods@1400x1050.jpg';
 const backgroundImage = 'https://www.wallsauce.com/uploads/wallsauce-com/images/hero/cat/1049/645/music-speakers.jpg';
+// const backgroundImage = 'https://images2.alphacoders.com/109/thumb-1920-1093974.jpg'; // New one?
 
 const Background = styled(Box)({
     position: 'absolute',
