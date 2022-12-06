@@ -44,15 +44,12 @@ public class PlaylistClient {
 //            }
 //            behavior = new RecommendBehavior1();
 //            builder.addSongs(behavior.recommend(s));
-            //System.out.println(SpotifyCalls.getRecommendedTrack_Sync(s.id, s.artist_id)[0].toString());
-
+//            System.out.println(SpotifyCalls.getRecommendedTrack_Sync(s.id, s.artist_id)[0].toString());
 
 //        }
 
         behavior = new RecommendBehavior1();
         builder.addSongs(behavior.recommend(songs.get(0)));
-
-//        SpotifyCalls.getTrack_Sync(songs.get(0).id);
 
         return builder.getPlaylist().songs;
     }
