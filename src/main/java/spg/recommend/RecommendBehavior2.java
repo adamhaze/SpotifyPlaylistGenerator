@@ -6,6 +6,7 @@ import spg.playlist.Song;
 import spg.spotifyAPI.SpotifyCalls;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 // STRATEGY PATTERN
 // abstracting away the behavior of finding a related song (based on query song)
@@ -19,9 +20,11 @@ public class RecommendBehavior2 implements RecommendBehavior {
         //TODO: check for null values if the call fails
         for(Track track : tracks)
         {
+            if (Objects.equals(track.getName(), song.name)){ continue; }
             Song newSong = new Song(track.getName(), track.getArtists()[0].getName(), track.getId(), track.getArtists()[0].getId());
             System.out.println(newSong.name);
             retSongs.add(newSong);
+            if (retSongs.size() == 5) { break; }
 
         }
         return retSongs;

@@ -81,7 +81,9 @@ public class SpotifyCalls {
             //set credentials
             clientCredentials_Sync();
             //create request
-            final GetArtistsTopTracksRequest getArtistsTopTracksRequest = spotifyApi.getArtistsTopTracks(artistId, CountryCode.US).build();
+            final GetArtistsTopTracksRequest getArtistsTopTracksRequest = spotifyApi.getArtistsTopTracks(artistId, CountryCode.US)
+                    .build();
+
             //execute request
             return getArtistsTopTracksRequest.execute();
 

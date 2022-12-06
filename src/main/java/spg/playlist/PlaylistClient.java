@@ -48,7 +48,7 @@ public class PlaylistClient {
 
 //        }
 
-        behavior = new RecommendBehavior1();
+        behavior = new RecommendBehavior2();
         builder.addSongs(behavior.recommend(songs.get(0)));
 
         return builder.getPlaylist().songs;
