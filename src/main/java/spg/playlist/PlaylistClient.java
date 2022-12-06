@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import spg.recommend.RecommendBehavior;
 import spg.user.User;
 import spg.spotifyAPI.SpotifyCalls;
 import spg.recommend.RecommendBehavior1;
@@ -31,9 +32,20 @@ public class PlaylistClient {
     @PostMapping(path="/buildPlaylist", produces = MediaType.APPLICATION_JSON_VALUE)
     public ArrayList<Song> buildPlaylist(@RequestBody ArrayList<Song> songs){
         PlaylistBuilder builder = new PlaylistBuilder(songs);
-        builder.addSongs(new RecommendBehavior1());
-        builder.addSongs(new RecommendBehavior2());
-        builder.addSongs(new RecommendBehavior3());
+        RecommendBehavior behavior;
+        for(Song s : songs)
+        { //Create new random RecommendBehavior
+            int random = (int)(Math.random()*3);
+            switch (random) {
+                case 0 -> behavior = new RecommendBehavior1();
+                case 1 -> behavior = new RecommendBehavior2();
+                case 2 -> behavior = new RecommendBehavior3();
+                default -> behavior = null;
+            }
+            builder.addSongs(behavior.recommend(s));
+
+
+        }
 
         SpotifyCalls.getTrack_Sync(songs.get(0).id);
 
