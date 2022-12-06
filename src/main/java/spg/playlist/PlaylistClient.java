@@ -33,8 +33,8 @@ public class PlaylistClient {
     public ArrayList<Song> buildPlaylist(@RequestBody ArrayList<Song> songs){
         PlaylistBuilder builder = new PlaylistBuilder(songs);
         RecommendBehavior behavior;
-        for(Song s : songs)
-        { //Create new random RecommendBehavior
+//        for(Song s : songs)
+//        { //Create new random RecommendBehavior
 //            int random = (int)(Math.random()*3);
 //            switch (random) {
 //                case 0 -> behavior = new RecommendBehavior1();
@@ -42,13 +42,17 @@ public class PlaylistClient {
 //                case 2 -> behavior = new RecommendBehavior3();
 //                default -> behavior = null;
 //            }
+//            behavior = new RecommendBehavior1();
 //            builder.addSongs(behavior.recommend(s));
             //System.out.println(SpotifyCalls.getRecommendedTrack_Sync(s.id, s.artist_id)[0].toString());
 
 
-        }
+//        }
 
-        SpotifyCalls.getTrack_Sync(songs.get(0).id);
+        behavior = new RecommendBehavior1();
+        builder.addSongs(behavior.recommend(songs.get(0)));
+
+//        SpotifyCalls.getTrack_Sync(songs.get(0).id);
 
         return builder.getPlaylist().songs;
     }
