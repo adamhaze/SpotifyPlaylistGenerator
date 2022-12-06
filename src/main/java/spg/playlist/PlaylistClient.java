@@ -35,14 +35,15 @@ public class PlaylistClient {
         RecommendBehavior behavior;
         for(Song s : songs)
         { //Create new random RecommendBehavior
-            int random = (int)(Math.random()*3);
-            switch (random) {
-                case 0 -> behavior = new RecommendBehavior1();
-                case 1 -> behavior = new RecommendBehavior2();
-                case 2 -> behavior = new RecommendBehavior3();
-                default -> behavior = null;
-            }
-            builder.addSongs(behavior.recommend(s));
+//            int random = (int)(Math.random()*3);
+//            switch (random) {
+//                case 0 -> behavior = new RecommendBehavior1();
+//                case 1 -> behavior = new RecommendBehavior2();
+//                case 2 -> behavior = new RecommendBehavior3();
+//                default -> behavior = null;
+//            }
+//            builder.addSongs(behavior.recommend(s));
+            //System.out.println(SpotifyCalls.getRecommendedTrack_Sync(s.id, s.artist_id)[0].toString());
 
 
         }

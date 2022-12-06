@@ -5,10 +5,13 @@ import se.michaelthelin.spotify.SpotifyApi;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import se.michaelthelin.spotify.model_objects.credentials.ClientCredentials;
 import se.michaelthelin.spotify.model_objects.specification.Track;
+import se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
 import se.michaelthelin.spotify.requests.authorization.client_credentials.ClientCredentialsRequest;
+import se.michaelthelin.spotify.requests.data.browse.GetRecommendationsRequest;
 import se.michaelthelin.spotify.requests.data.tracks.GetTrackRequest;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 //MOST OF THE CODE CAME FROM EXAMPLES GIVEN ON THE GITHUB PAGE
@@ -49,6 +52,25 @@ public class SpotifyCalls {
             System.out.println("Name: " + track.getName());
         } catch (IOException | SpotifyWebApiException | ParseException e) {
             System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    public static TrackSimplified[] getRecommendedTrack_Sync(String trackId, String artistId){
+        try {
+            //set credentials
+            clientCredentials_Sync();
+            //create request
+            final GetRecommendationsRequest getRecommendationsRequest = spotifyApi.getRecommendations()
+                    .seed_tracks(trackId)
+                    .seed_artists(artistId)
+                    .limit(5)
+                    .build();
+            return getRecommendationsRequest.execute().getTracks();
+//            final TrackSimplified tracks[] = getRecommendationsRequest.execute().getTracks();
+
+        } catch(IOException | SpotifyWebApiException | ParseException e) {
+            System.out.println("Error: " + e.getMessage());
+            return null;
         }
     }
 }
