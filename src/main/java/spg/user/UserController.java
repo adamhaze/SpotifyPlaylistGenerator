@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+// Pattern: Model View Controller (MVC)
+// Element: CONTROLLER
+// handles change-of-state operations between the frontend and the model (MongoDB)
+
+
 @RestController
 public class UserController {
 

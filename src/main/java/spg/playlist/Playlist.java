@@ -5,6 +5,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 
+// Pattern: Model View Controller (MVC)
+// Element: MODEL
+// represents a Playlist entry in the database
+
+
 @Document(collection = "playlist")
 public class Playlist {
 

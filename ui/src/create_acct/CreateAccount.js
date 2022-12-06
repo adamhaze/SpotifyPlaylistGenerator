@@ -8,6 +8,10 @@ import BackgroundImage from "../components/BackgroundImage";
 import CenterImage from "../components/CenterImage";
 import { RoutingWrapper } from "../services/RoutingWrapper";
 
+// Pattern: Model View Controller (MVC)
+// Element: VIEW
+// visual representation of a create account interface
+
 
 class CreateAccount extends React.Component 
 {

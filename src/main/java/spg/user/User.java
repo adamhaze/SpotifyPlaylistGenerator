@@ -3,6 +3,10 @@ package spg.user;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+// Pattern: Model View Controller (MVC)
+// Element: MODEL
+// represents a User entry in the database
+
 @Document(collection = "users")
 public class User {
 

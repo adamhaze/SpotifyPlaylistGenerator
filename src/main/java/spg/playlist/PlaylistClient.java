@@ -13,6 +13,11 @@ import spg.spotifyAPI.SpotifyCalls;
 import java.util.ArrayList;
 import java.util.List;
 
+// Pattern: Model View Controller (MVC)
+// Element: CONTROLLER
+// handles change-of-state operations between the frontend and the model (MongoDB)
+
+
 @RestController
 public class PlaylistClient {
 

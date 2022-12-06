@@ -8,6 +8,10 @@ import { RoutingWrapper } from "../services/RoutingWrapper";
 import { ButtonGroup } from "@mui/material";
 import { savePlaylistToDB } from "../RouteController";
 
+// Pattern: Model View Controller (MVC)
+// Element: VIEW
+// visual representation of a generated playlist
+
 
 class DisplayGeneratedPlaylist extends React.Component {
 	constructor(props){

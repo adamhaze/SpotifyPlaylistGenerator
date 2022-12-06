@@ -10,6 +10,10 @@ import "../components/DropdownList.css";
 import { getRelatedSongs, buildPlaylist, getUserEmail } from "../RouteController";
 import { RoutingWrapper } from "../services/RoutingWrapper";
 
+// Pattern: Model View Controller (MVC)
+// Element: VIEW
+// visual representation of a user searching for songs and generating a playlist
+
 
 class UserHomePage extends React.Component {
     constructor(props) {

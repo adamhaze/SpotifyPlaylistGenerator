@@ -7,6 +7,10 @@ import CenterImage from "../components/CenterImage";
 import { validateLogin } from "../RouteController";
 import { RoutingWrapper } from "../services/RoutingWrapper";
 
+// Pattern: Model View Controller (MVC)
+// Element: VIEW
+// visual representation of a login screen
+
 
 class Login extends React.Component {
     constructor(props){

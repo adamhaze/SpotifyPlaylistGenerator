@@ -4,6 +4,10 @@ import BackgroundImage from "../components/BackgroundImage";
 import "./UserHomePage.css";
 import { getUserPlaylistsFromDB } from "../RouteController";
 
+// Pattern: Model View Controller (MVC)
+// Element: VIEW
+// visual representation of a user's account
+
 
 class AccountInfo extends React.Component {
     constructor(props) {
