@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import spg.user.User;
 import spg.spotifyAPI.SpotifyCalls;
+import spg.recommend.RecommendBehavior1;
+import spg.recommend.RecommendBehavior2;
+import spg.recommend.RecommendBehavior3;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,15 +31,13 @@ public class PlaylistClient {
     @PostMapping(path="/buildPlaylist", produces = MediaType.APPLICATION_JSON_VALUE)
     public ArrayList<Song> buildPlaylist(@RequestBody ArrayList<Song> songs){
         PlaylistBuilder builder = new PlaylistBuilder(songs);
+        builder.addSongs(new RecommendBehavior1());
+        builder.addSongs(new RecommendBehavior2());
+        builder.addSongs(new RecommendBehavior3());
+
         SpotifyCalls.getTrack_Sync(songs.get(0).id);
 
-
         return builder.getPlaylist().songs;
-//        ArrayList<String> ret = new ArrayList<>();
-//        for (Song song : songs) {
-//            ret.add(song.name);
-//        }
-//        return ret;
     }
 
     @CrossOrigin(origins = "http://localhost:3000")

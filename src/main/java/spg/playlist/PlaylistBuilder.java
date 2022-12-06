@@ -1,5 +1,7 @@
 package spg.playlist;
 
+import spg.recommend.RecommendBehavior;
+
 import java.util.ArrayList;
 
 public class PlaylistBuilder {
@@ -13,9 +15,12 @@ public class PlaylistBuilder {
         this.playlist = new Playlist(songs, "", "");
     }
 
-    public void addSong(){
-        // for each song randomly choose an algo 5 times to add 5 songs to playlist
+    public void addSongs(RecommendBehavior rb){
+        for (Song s : this.querySongs) {
+            playlist.songs.add(rb.recommend(s));
+        }
     }
+
 
     public Playlist getPlaylist(){
         return this.playlist;
