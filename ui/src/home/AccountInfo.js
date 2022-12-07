@@ -50,7 +50,7 @@ class AccountInfo extends React.Component {
                         <span>username: {this.state.username}</span>
                     </div>
                     {this.state.userPlaylists.length > 0 &&
-                        <div style={{marginTop: 50}}>
+                        <div style={{marginTop: 50, maxHeight: 700, overflowY: "scroll"}}>
                             <h2>Your saved playlists:</h2>
                             <div>
                                 {this.state.userPlaylists.map(playlist => (
