@@ -31,6 +31,9 @@ public class PlaylistClient {
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(path="/buildPlaylist", produces = MediaType.APPLICATION_JSON_VALUE)
     public ArrayList<Song> buildPlaylist(@RequestBody ArrayList<Song> songs){
+        // Pattern: Builder
+        // Element: CLIENT
+        // handles instantiating the builder and getting the resulting playlist
         PlaylistBuilder builder = new PlaylistBuilder(songs);
         ArrayList<Song> temp = new ArrayList<>();
         for(Song s : songs)

@@ -5,6 +5,10 @@ import spg.recommend.RecommendBehavior;
 import java.lang.reflect.RecordComponent;
 import java.util.ArrayList;
 
+// Pattern: Builder
+// Element: Builder
+// builds a single instance of Playlist in stages
+
 public class PlaylistBuilder {
 
     Playlist playlist;
