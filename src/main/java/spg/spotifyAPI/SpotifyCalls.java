@@ -21,8 +21,8 @@ import java.util.ArrayList;
 //HELP WITH THIS CODE CAME FROM EXAMPLES GIVEN ON THE GITHUB PAGE
 //https://github.com/spotify-web-api-java/spotify-web-api-java
 public class SpotifyCalls {
-    private static final String clientId = "1818069e79754a598ba2c587d43d0ec5";
-    private static final String clientSecret = "bf98b89f33c34c0880520a34bded89ac";
+    private static final String clientId = "FILL_YOUR_ID_HERE";
+    private static final String clientSecret = "FILL_YOUR_SECRET_HERE";
 
     private static final SpotifyApi spotifyApi = new SpotifyApi.Builder()
             .setClientId(clientId)
