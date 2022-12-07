@@ -2,7 +2,7 @@ package spg.playlist;
 
 import spg.recommend.RecommendBehavior;
 
-import java.lang.reflect.RecordComponent;
+//import java.lang.reflect.RecordComponent;
 import java.util.ArrayList;
 
 // Pattern: Builder
