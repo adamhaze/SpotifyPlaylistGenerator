@@ -22,7 +22,6 @@ public class RecommendBehavior2 implements RecommendBehavior {
         {
             if (Objects.equals(track.getName(), song.name)){ continue; }
             Song newSong = new Song(track.getName(), track.getArtists()[0].getName(), track.getId(), track.getArtists()[0].getId());
-            System.out.println(newSong.name);
             retSongs.add(newSong);
             if (retSongs.size() == 5) { break; }
 

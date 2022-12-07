@@ -32,27 +32,20 @@ public class PlaylistClient {
     @PostMapping(path="/buildPlaylist", produces = MediaType.APPLICATION_JSON_VALUE)
     public ArrayList<Song> buildPlaylist(@RequestBody ArrayList<Song> songs){
         PlaylistBuilder builder = new PlaylistBuilder(songs);
-        RecommendBehavior behavior;
-//        for(Song s : songs)
-//        { //Create new random RecommendBehavior
-//            int random = (int)(Math.random()*3);
-//            switch (random) {
-//                case 0 -> behavior = new RecommendBehavior1();
-//                case 1 -> behavior = new RecommendBehavior2();
-//                case 2 -> behavior = new RecommendBehavior3();
-//                default -> behavior = null;
-//            }
-//            behavior = new RecommendBehavior1();
-//            builder.addSongs(behavior.recommend(s));
-//            System.out.println(SpotifyCalls.getRecommendedTrack_Sync(s.id, s.artist_id)[0].toString());
-
-//        }
-
-        behavior = new RecommendBehavior2();
-        builder.addSongs(behavior.recommend(songs.get(0)));
-            //System.out.println(SpotifyCalls.getRecommendedTrack_Sync(s.id, s.artist_id)[0].toString());
-            //System.out.println(SpotifyCalls.getArtistsTopTracks_Sync(s.artist_id)[0]);
-            //System.out.println(SpotifyCalls.getArtistRelatedArtist_Sync(s.artist_id)[0]);
+        ArrayList<Song> temp = new ArrayList<>();
+        for(Song s : songs)
+        { //Create new random RecommendBehavior
+            RecommendBehavior behavior;
+            int random = (int)(Math.random()*3);
+            switch (random) {
+                case 0 -> behavior = new RecommendBehavior1();
+                case 1 -> behavior = new RecommendBehavior2();
+                case 2 -> behavior = new RecommendBehavior3();
+                default -> behavior = null;
+            }
+            temp.addAll(behavior.recommend(s));
+        }
+        builder.addSongs(temp);
 
         return builder.getPlaylist().songs;
     }
