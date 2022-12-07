@@ -19,11 +19,11 @@ Final project codebase for CSCI 5448. Evan's machine uses Java 8 with Java SDK 1
 
 ### Starting the Frontend React UI
 
-    ``cd ui``
-
-    ``npm install``
-
-    ``npm start``
+   ``cd ui``
+   
+   ``npm install``
+   
+   ``npm start``
 
 
 From here it will open our web application as a React application in your default browser.
