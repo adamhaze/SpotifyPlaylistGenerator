@@ -50,6 +50,9 @@ public class PlaylistClient {
 
         behavior = new RecommendBehavior2();
         builder.addSongs(behavior.recommend(songs.get(0)));
+            //System.out.println(SpotifyCalls.getRecommendedTrack_Sync(s.id, s.artist_id)[0].toString());
+            //System.out.println(SpotifyCalls.getArtistsTopTracks_Sync(s.artist_id)[0]);
+            //System.out.println(SpotifyCalls.getArtistRelatedArtist_Sync(s.artist_id)[0]);
 
         return builder.getPlaylist().songs;
     }
