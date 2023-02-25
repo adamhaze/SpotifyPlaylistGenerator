@@ -16,13 +16,17 @@ import se.michaelthelin.spotify.requests.data.tracks.GetTrackRequest;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import io.github.cdimascio.dotenv.Dotenv;
+import io.github.cdimascio.dotenv.DotenvException;
 
 
 //HELP WITH THIS CODE CAME FROM EXAMPLES GIVEN ON THE GITHUB PAGE
 //https://github.com/spotify-web-api-java/spotify-web-api-java
 public class SpotifyCalls {
-    private static final String clientId = "1818069e79754a598ba2c587d43d0ec5";
-    private static final String clientSecret = "bf98b89f33c34c0880520a34bded89ac";
+    static Dotenv dotenv = Dotenv.load();
+
+    private static final String clientId = dotenv.get("JAVA_SPOTIFY_CLIENT_ID");
+    private static final String clientSecret = dotenv.get("JAVA_SPOTIFY_CLIENT_SECRET");
 
     private static final SpotifyApi spotifyApi = new SpotifyApi.Builder()
             .setClientId(clientId)
