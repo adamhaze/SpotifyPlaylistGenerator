@@ -70,25 +70,25 @@ class Login extends React.Component {
                     }}
                 >
                     <div>
-                    <TextField
-                        required
-                        label="Username"
-                        name="username"
-                        value={this.state.username}
-                        onChange={this.handleChange.bind(this)}
-                        error={this.state.error}
-                        helperText={this.state.error ? 'invalid login credentials' : ''}
-                    />
-                    <TextField
-                        required
-                        label="Password"
-                        name="password"
-                        type="password"
-                        error={this.state.error}
-                        value={this.state.password}
-                        onChange={this.handleChange.bind(this)}
-                    />
-                    <Button variant="contained" onClick={this.handleSubmit.bind(this)}>Login</Button>
+                        <TextField
+                            required
+                            label="Username"
+                            name="username"
+                            value={this.state.username}
+                            onChange={this.handleChange.bind(this)}
+                            error={this.state.error}
+                            helperText={this.state.error ? 'invalid login credentials' : ''}
+                        />
+                        <TextField
+                            required
+                            label="Password"
+                            name="password"
+                            type="password"
+                            error={this.state.error}
+                            value={this.state.password}
+                            onChange={this.handleChange.bind(this)}
+                        />
+                        <Button variant="contained" onClick={this.handleSubmit.bind(this)}>Login</Button>
                     </div>
                     {/* {this.state.s && <Navigate to="/home" state={this.state}/>} */}
                 </Box>
