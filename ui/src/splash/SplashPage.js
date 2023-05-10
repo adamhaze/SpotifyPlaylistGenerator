@@ -26,7 +26,7 @@ class SplashPage extends React.Component {
                 </Typography>
 
                 <div className="btn-wrapper">
-                    <Button variant="contained" href="/login">Login</Button>
+                    <Button variant="contained" href="/userLogin">Login</Button>
                 </div>
 
                 <div className="btn-wrapper">

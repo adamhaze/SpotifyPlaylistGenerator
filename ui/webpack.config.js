@@ -16,5 +16,10 @@ module.exports = {
             buffer: require.resolve("buffer"),
             querystring: require.resolve("querystring")
         }
-    }
+    },
+    devServer: {
+        client: {
+            webSocketURL: 'ws://172.20.74.217:30008/ws',
+        },
+    },
 }

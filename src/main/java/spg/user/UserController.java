@@ -12,14 +12,18 @@ import org.springframework.web.bind.annotation.*;
 // Element: CONTROLLER
 // handles change-of-state operations between the frontend and the model (MongoDB)
 
-
 @RestController
 public class UserController {
+
+//    private static final String host = "http://172.22.1.13:3000";
+//    private static final String host = "http://127.0.0.1:3000";
+//    private static final String host = "http://10.98.76.100:30008";
 
     @Autowired
     private UserRepository repository;
 
-    @CrossOrigin(origins = "http://localhost:3000")
+//    @CrossOrigin(origins = host)
+    @CrossOrigin
     @PostMapping(path="/users")
     public ResponseEntity<String> saveUserToDB(@Validated @RequestBody User user) {
         System.out.println(user);
@@ -32,14 +36,16 @@ public class UserController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+//    @CrossOrigin(origins = host)
+    @CrossOrigin
     @PostMapping(path="/login", produces = MediaType.APPLICATION_JSON_VALUE)
     public Boolean checkLoginCredentials(@RequestBody User user) {
         User u = repository.findByUsernameAndPassword(user.username, user.password);
         return u != null;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+//    @CrossOrigin(origins = host)
+    @CrossOrigin
     @PostMapping(path="/getEmail", produces = MediaType.APPLICATION_JSON_VALUE)
     public String getUserEmail(@RequestBody User user) {
         User u = repository.findByUsernameAndPassword(user.username, user.password);

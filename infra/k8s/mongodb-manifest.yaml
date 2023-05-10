@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb-app
+  template:
+    metadata:
+      labels:
+        app: mongodb-app
+    spec:
+      containers:
+      - name: mongodb-app
+        image: adamhayes/spg-mongodb:0.0.3
+        ports:
+        - containerPort: 27017
+        resources:
+          cpu: 100m
+          memory: 2G
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-svc
+spec:
+  clusterIP: 10.96.1.100
+  selector:
+    app: mongodb-app
+  ports:
+  - port: 27017
+    targetPort: 27017

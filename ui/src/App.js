@@ -14,7 +14,7 @@ const App = () =>
     <Routes>
       <Route exact path="/" element={<SplashPage/>} />
       <Route exact path="/register" element={<CreateAccount/>} />
-      <Route exact path="/login" element={<Login/>} />
+      <Route exact path="/userLogin" element={<Login/>} />
       <Route exact path="/home" element={<UserHomePage/>} />
       <Route exact path="/generated" element={<DisplayGeneratedPlaylist/>} />
       <Route exact path="/account" element={<AccountInfo/>} />

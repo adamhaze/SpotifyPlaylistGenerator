@@ -25,10 +25,15 @@ import java.util.List;
 @RestController
 public class PlaylistClient {
 
+//    private static final String host = "http://172.22.1.13:3000";
+//    private static final String host = "http://127.0.0.1:3000";
+//    private static final String host = "http://10.98.76.100:30008";
+
     @Autowired
     private PlaylistRepository repository;
 
-    @CrossOrigin(origins = "http://localhost:3000")
+//    @CrossOrigin(origins = host)
+    @CrossOrigin
     @PostMapping(path="/buildPlaylist", produces = MediaType.APPLICATION_JSON_VALUE)
     public ArrayList<Song> buildPlaylist(@RequestBody ArrayList<Song> songs){
         PlaylistBuilder builder = new PlaylistBuilder(songs);
@@ -50,7 +55,8 @@ public class PlaylistClient {
         return builder.getPlaylist().songs;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+//    @CrossOrigin(origins = host)
+    @CrossOrigin
     @PostMapping(path="/savePlaylist", produces = MediaType.APPLICATION_JSON_VALUE)
     public Boolean savePlaylist(@RequestBody Playlist p) {
         // don't save playlist if one with same name already exists for current user
@@ -59,7 +65,8 @@ public class PlaylistClient {
         return true;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+//    @CrossOrigin(origins = host)
+    @CrossOrigin
     @PostMapping(path="/getUserPlaylists", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Playlist> getAllUserPlaylists(@RequestBody User u) {
 //        System.out.println(repository.findByEmail(email));

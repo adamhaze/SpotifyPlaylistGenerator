@@ -6,6 +6,9 @@ const axios = require('axios').default;
 // Element: CONTROLLER
 // handles change-of-state operations between the view (user interface) and the model (MongoDB)
 
+const host = 'www.spg.com:31591'; // SpringBoot NodePort
+
+
 
 //https://ritvikbiswas.medium.com/connecting-to-the-spotify-api-using-node-js-and-axios-client-credentials-flow-c769e2bee818
 
@@ -39,11 +42,11 @@ async function getAuth(){
 export async function createUser(obj){
     console.log(obj)
     try{
-        const response = await axios.post('http://localhost:8080/users', obj);
+        const response = await axios.post(`http://${host}/users`, obj);
         console.log(response);
         return true;
     }catch (error){
-        console.log(error);
+        console.log(error.response.data);
         return false;
     }
 }
@@ -52,7 +55,7 @@ export async function createUser(obj){
 export async function validateLogin(obj) {
     try {
         console.log("in validateLogin...")
-        const response = await axios.post('http://localhost:8080/login', {
+        const response = await axios.post(`http://${host}/login`, {
             'username': obj.username,
             'password': obj.password
         })
@@ -65,7 +68,7 @@ export async function validateLogin(obj) {
 // from login credentials, get user email for unique identification
 export async function getUserEmail(obj) {
     try {
-        const response = await axios.post('http://localhost:8080/getEmail', {
+        const response = await axios.post(`http://${host}/getEmail`, {
             'username': obj.username,
             'password': obj.password
         })
@@ -119,7 +122,7 @@ export async function getRelatedSongs(obj) {
 // send object containing user selected songs (strings) to backend for playlist generation
 export async function buildPlaylist(obj) {
     try {
-        const response = await axios.post('http://localhost:8080/buildPlaylist',obj);
+        const response = await axios.post(`http://${host}/buildPlaylist`,obj);
         console.log('In build playlist...');
         return response.data;
     } catch (error) {
@@ -130,7 +133,7 @@ export async function buildPlaylist(obj) {
 // send state data from DisplayGeneratedPlaylist to create a Playlist entry in DB
 export async function savePlaylistToDB(obj) {
     try {
-        const response = await axios.post('http://localhost:8080/savePlaylist',obj);
+        const response = await axios.post(`http://${host}/savePlaylist`,obj);
         console.log(response.data);
         return response.data;
 
@@ -141,7 +144,7 @@ export async function savePlaylistToDB(obj) {
 
 export async function getUserPlaylistsFromDB(obj) {
     try {
-        const response = await axios.post('http://localhost:8080/getUserPlaylists',obj);
+        const response = await axios.post(`http://${host}/getUserPlaylists`,obj);
         // console.log(response.data);
         return response.data;
     } catch (error) {
